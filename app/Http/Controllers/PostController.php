@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Post;
+
 
 
 class PostController extends Controller
@@ -15,6 +16,10 @@ class PostController extends Controller
     
     return view('posts.index') -> with(['posts' => $post -> getPaginateByLimit(1)]);
   }
+   public function create()
+  {
+      return view('posts/create');
+  }
 /**
  * 特定IDのpostを表示する
  *
@@ -23,12 +28,15 @@ class PostController extends Controller
  */
     public function show(Post $post)
   {
-    //return view('posts.show')->with(['post' => $post]);
-    dd($post);
+    return view('posts.show')->with(['post' => $post]);
+    
  //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
   }
-   public function create()
+  
+   public function store(Request $request,Post $post)
   {
-      return view('posts/create');
+      $input = $request['post'];
+      $post->fill($input)->save();
+      return redirect('/posts/' . $post->id);
   }
 }
