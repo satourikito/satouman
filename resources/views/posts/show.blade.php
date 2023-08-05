@@ -17,12 +17,9 @@
                 <p class='body'>{{ $post->body }}</p>    
             </div>
         </div>
-<<<<<<< HEAD
-=======
         <div class='edit'>
             <a href="/posts/{{ $post->id }}/edit">edit</a>
         </div>
->>>>>>> dev_basis05
         <div class="footer">
             <a href="/">戻る</a>
         </div>
