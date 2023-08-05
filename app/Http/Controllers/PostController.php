@@ -15,7 +15,7 @@ class PostController extends Controller
     // $test = $post->orderBy('updated_at', 'DESC')->limit(2)->toSql(); //確認用に追加
     //dd($test); //確認用に追加
     
-    return view('posts.index') -> with(['posts' => $post -> getPaginateByLimit(1)]);
+    return view('posts.index') -> with(['posts' => $post -> getPaginateByLimit(5)]);
   }
    public function create()
   {
@@ -38,6 +38,17 @@ class PostController extends Controller
   {
       $input = $request['post'];
       $post->fill($input)->save();
+      return redirect('/posts/' . $post->id);
+  }
+   
+   public function edit(Post $post)
+  {
+      return view('posts.edit')->with(['post' => $post]);
+  }
+   public function update(PostRequest $request,Post $post)
+  {
+      $input_post=$request['post'];
+      $post->fill($input_post)->save();
       return redirect('/posts/' . $post->id);
   }
 }
