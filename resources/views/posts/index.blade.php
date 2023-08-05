@@ -13,6 +13,10 @@
     </head>
     <body class="antialiased">
         <h1>Blog Name</h1>
+<<<<<<< HEAD
+=======
+        <a href="/posts/create">create</a>
+>>>>>>> dev_basis05
         <div class='posts'>
             @foreach($posts as $post)
                 <div class='post'>
